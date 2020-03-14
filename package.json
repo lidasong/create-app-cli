@@ -1,0 +1,23 @@
+{
+  "name": "customcli",
+  "version": "1.0.0",
+  "description": "cli for build react app or node api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "create-app": "./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^5.0.0",
+    "cross-spawn": "^7.0.1",
+    "del": "^5.1.0",
+    "fs-extra": "^8.1.0",
+    "inquirer": "^7.1.0",
+    "ora": "^4.0.3"
+  }
+}
