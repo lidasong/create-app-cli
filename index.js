@@ -56,7 +56,7 @@ inquirer.prompt([{
         fs.mkdirSync(answers.appName)
         await fetchRemote(projectType, answers.appName)
         await del(`${answers.appName}/.git`)
-        await installDeps(path.resolve(__dirname, answers.appName))
+        // await installDeps(path.resolve(__dirname, answers.appName))
         process.exit()
     }catch(err) {
         throw err

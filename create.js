@@ -12,7 +12,7 @@ async function fetchRemote(type, dir) {
     const templateURL = await getTemplateURL(type)
     const spinner = ora(`git clone the ${type} repo from ${templateURL}`).start()
     try {
-        await spawn('git', ['clone', templateURL, dir])
+        spawn.sync('git', ['clone', templateURL, dir])
         spinner.succeed('clone the repo')
     }catch(err){
         spinner.fail('git clone the repo failed')
@@ -20,11 +20,12 @@ async function fetchRemote(type, dir) {
     }
 }
 
-async function installDeps(cwd) {
-    const spinner = ora(`install the app's dependencies at ${cwd}`).start()
+async function installDeps(path) {
+    const spinner = ora(`install the app's dependencies at ${path}`).start()
     try {
-        await spawn('npm', ['install', '-prefix', cwd])
-        spinner.succeed('install ready')
+        spawn.sync('cd', [path])
+        spawn.sync('cnpm', ['install'])
+        spinner.succeed('install ready, you can run your app now')
     }catch(err) {
         spinner.fail('install failed')
         throw err
