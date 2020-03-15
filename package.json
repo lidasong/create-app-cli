@@ -1,5 +1,5 @@
 {
-  "name": "customcli",
+  "name": "create-custom-app",
   "version": "1.0.0",
   "description": "cli for build react app or node api",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "create-app": "./index.js"
+    "create-custom-app": "./index.js"
   },
   "author": "",
   "license": "ISC",
