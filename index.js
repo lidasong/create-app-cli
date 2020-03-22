@@ -5,7 +5,7 @@ const path = require('path')
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const package = require('./package.json');
-const {fetchRemote, installDeps} = require('./create')
+const { fetchRemote, installDeps } = require('./create')
 const del = require('del')
 const fs = require('fs')
 const projectTypes = ['react', 'node']
@@ -13,19 +13,19 @@ const projectTypes = ['react', 'node']
 let projectType
 const program = new commander.Command(package.name)
     .version(package.version)
+    .help(() => {
+        return `
+        this cli for creating ${chalk.yellowBright('react app、 node app')}
+        you can create app like ${chalk.bold.green('reate-app-custom react')} for react app
+        or you can create app like ${chalk.bold.green('reate-app-custom node')} for node server\r\n`  
+    })
     .arguments('<project-type>')
     .usage(`${chalk.green('<project-type>')} [options]`)
     .action(type => {
         projectType = type || 'react';
-    })
-    .option('-h --help');
+    });
 
 program.parse(process.argv);
-
-if (program.help) {
-    console.log(`cli for custom create react app、 node app\r\n`)
-    console.log(`create-app-custom react|node`)
-}
 
 if (!projectTypes.includes(projectType)) {
     console.log(chalk.red.bold(`the ${projectType} not support now, we now support ${projectTypes.join('、')}`))
@@ -41,7 +41,7 @@ inquirer.prompt([{
         }
         console.log(chalk.bold.greenBright(`your app's name is ${answers.appName}`))
     }
-},{
+}, {
     type: 'input',
     name: 'author',
     message: (answers) => {
@@ -58,7 +58,7 @@ inquirer.prompt([{
         await del(`${answers.appName}/.git`)
         // await installDeps(path.resolve(__dirname, answers.appName))
         process.exit()
-    }catch(err) {
+    } catch (err) {
         throw err
     }
 }).catch(err => {

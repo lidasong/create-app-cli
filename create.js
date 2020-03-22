@@ -24,7 +24,7 @@ async function installDeps(path) {
     const spinner = ora(`install the app's dependencies at ${path}`).start()
     try {
         spawn.sync('cd', [path])
-        spawn.sync('cnpm', ['install'])
+        spawn.sync('npm', ['install'])
         spinner.succeed('install ready, you can run your app now')
     }catch(err) {
         spinner.fail('install failed')
